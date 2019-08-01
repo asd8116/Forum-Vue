@@ -229,6 +229,7 @@ const dummyData = {
 }
 
 export default {
+  name: 'RestaurantsFeeds',
   data() {
     return {
       restaurants: [],
