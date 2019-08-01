@@ -11,8 +11,9 @@
         <NewestRestaurants :restaurants="restaurants" />
       </div>
       <div class="col-md-6">
-        <!-- 最新評論 NewestComments-->
         <h3>最新評論</h3>
+        <!-- 最新評論 NewestComments-->
+        <NewestComments :comments="comments" />
       </div>
     </div>
   </div>
@@ -21,6 +22,7 @@
 <script>
 import NavTabs from '@/components/NavTabs'
 import NewestRestaurants from '@/components/NewestRestaurants'
+import NewestComments from '@/components/NewestComments'
 
 const dummyData = {
   restaurants: [
@@ -244,7 +246,8 @@ export default {
   },
   components: {
     NavTabs,
-    NewestRestaurants
+    NewestRestaurants,
+    NewestComments
   }
 }
 </script>
