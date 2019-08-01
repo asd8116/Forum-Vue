@@ -6,6 +6,8 @@ import Restaurants from './views/Restaurants.vue'
 Vue.use(Router)
 
 export default new Router({
+  linkExactActiveClass: 'active',
+
   routes: [
     {
       path: '/',
