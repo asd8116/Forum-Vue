@@ -70,6 +70,11 @@ export default new Router({
       component: () => import('./views/admin/AdminRestaurants.vue')
     },
     {
+      path: '/admin/restaurants/:id',
+      name: 'admin-restaurant',
+      component: () => import('./views/admin/AdminRestaurant.vue')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: () => import('./views/NotFound.vue')
