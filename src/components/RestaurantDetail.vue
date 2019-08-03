@@ -38,13 +38,11 @@
 </template>
 
 <script>
+import { emptyImageFilter } from '@/utils/mixins'
+
 export default {
   name: 'RestaurantDetail',
-  filters: {
-    emptyImage(src) {
-      return src || 'http://via.placeholder.com/300x300?text=No+Image'
-    }
-  },
+  mixins: [emptyImageFilter],
   props: {
     initialRestaurant: {
       type: Object,
