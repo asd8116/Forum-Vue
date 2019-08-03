@@ -1,10 +1,11 @@
 <template>
   <div class="container py-5">
-    <h1>餐廳描述頁</h1>
     <!-- 餐廳資訊頁 RestaurantDetail -->
     <RestaurantDetail :initial-restaurant="restaurant" />
     <hr />
+
     <!-- 餐廳評論 RestaurantComments -->
+    <RestaurantComments :restaurant-comments="restaurantComments" @after-delete-comment="afterDeleteComment" />
     <!-- 新增評論 CreateComment -->
     <!-- 回上一頁 -->
   </div>
@@ -12,6 +13,7 @@
 
 <script>
 import RestaurantDetail from '@/components/RestaurantDetail'
+import RestaurantComments from '@/components/RestaurantComments'
 
 const dummyData = {
   restaurant: {
@@ -97,10 +99,14 @@ export default {
         isLiked: dummyData.isLiked
       }
       this.restaurantComments = dummyData.restaurant.Comments
+    },
+    afterDeleteComment(commentId) {
+      this.restaurantComments = this.restaurantComments.filter(comment => comment.id !== commentId)
     }
   },
   components: {
-    RestaurantDetail
+    RestaurantDetail,
+    RestaurantComments
   }
 }
 </script>
