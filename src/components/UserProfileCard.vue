@@ -11,10 +11,10 @@
           <p class="card-text">{{ user.email }}</p>
           <ul class="list-unstyled">
             <li>
-              <strong>{{ user.commentsLength }}</strong> 已評論餐廳
+              <strong>{{ user.commentsLength }}</strong> 間已評論餐廳
             </li>
             <li>
-              <strong>{{ user.favoritedRestaurantsLength }}</strong> 收藏的餐廳
+              <strong>{{ user.favoritedRestaurantsLength }}</strong> 間收藏的餐廳
             </li>
             <li>
               <strong>{{ user.followingsLength }}</strong> followings (追蹤者)
