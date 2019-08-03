@@ -7,7 +7,7 @@
         <button v-if="currentUser.isAdmin" type="button" class="btn btn-danger float-right" @click.stop.prevent="deleteComment(comment.id)">Delete</button>
 
         <h3>
-          <a href="#">{{ comment.User.name }}</a>
+          <router-link :to="{ name: 'user', params: {id: comment.User.id}}">{{ comment.User.name || '使用者' }}</router-link>
         </h3>
         <p>{{ comment.text }}</p>
 
