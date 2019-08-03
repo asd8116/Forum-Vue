@@ -8,7 +8,9 @@
         <!-- UserFollowingsCard -->
         <UserFollowingsCard :followings="followings" />
         <!-- UserFollowersCard -->
+        <UserFollowersCard :followers="followers" />
       </div>
+
       <div class="col-md-8">
         <!-- UserCommentsCard -->
         <!-- UserFavoritedRestaurantsCard -->
@@ -20,6 +22,7 @@
 <script>
 import UserProfileCard from '@/components/UserProfileCard'
 import UserFollowingsCard from '@/components/UserFollowingsCard'
+import UserFollowersCard from '@/components/UserFollowersCard'
 
 const dummyData = {
   profile: {
@@ -187,7 +190,8 @@ export default {
   },
   components: {
     UserProfileCard,
-    UserFollowingsCard
+    UserFollowingsCard,
+    UserFollowersCard
   }
 }
 </script>
