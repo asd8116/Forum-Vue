@@ -33,7 +33,6 @@ const dummyUser = {
 }
 
 export default {
-  name: 'RestaurantComments',
   mixins: [fromNowFilter],
   props: {
     restaurantComments: {

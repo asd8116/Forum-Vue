@@ -15,7 +15,6 @@
 import uuid from 'uuid/v4'
 
 export default {
-  name: 'CreateComment',
   props: {
     restaurantId: {
       type: Number,

@@ -16,7 +16,6 @@
 import { emptyImageFilter } from '@/utils/mixins'
 
 export default {
-  name: 'UserCommentsCard',
   mixins: [emptyImageFilter],
   props: {
     comments: {
