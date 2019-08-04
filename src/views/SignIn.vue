@@ -29,6 +29,9 @@
 </template>
 
 <script>
+import authorizationAPI from '@/apis/authorization'
+import { Toast } from '@/utils/helpers'
+
 export default {
   name: 'SignIn',
   data() {
@@ -38,14 +41,36 @@ export default {
     }
   },
   methods: {
-    handleSubmit(e) {
-      const data = JSON.stringify({
-        email: this.email,
-        password: this.password
-      })
-
-      // TODO: 向後端驗證使用者登入資訊是否合法
-      console.log('data', data)
+    async handleSubmit(e) {
+      try {
+        if (!this.email || !this.password) {
+          Toast.fire({
+            type: 'warning',
+            title: '請填入 email 和 password'
+          })
+          return
+        }
+        // 使用 authorizationAPI 的 signIn 方法
+        // 並且帶入使用者填寫的 email 和 password
+        const response = await authorizationAPI.signIn({
+          email: this.email,
+          password: this.password
+        })
+        const { data, statusText } = response
+        if (statusText !== 'OK' || data.status !== 'success') {
+          throw new Error(statusText)
+        }
+        // 將 token 存放在 localStorage 內
+        localStorage.setItem('token', data.token)
+        // 成功登入後轉址到餐聽首頁
+        this.$router.push('/restaurants')
+      } catch (error) {
+        this.password = ''
+        Toast.fire({
+          type: 'warning',
+          title: '請確認您輸入的帳號密碼是否錯誤'
+        })
+      }
     }
   }
 }
