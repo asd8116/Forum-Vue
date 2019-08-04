@@ -15,7 +15,7 @@
         <input id="password" v-model="password" name="password" type="password" class="form-control" placeholder="Password" required />
       </div>
 
-      <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Submit</button>
+      <button class="btn btn-lg btn-primary btn-block mb-3" type="submit" :disabled="isProcessing">Submit</button>
 
       <div class="text-center mb-3">
         <p>
@@ -33,11 +33,11 @@ import authorizationAPI from '@/apis/authorization'
 import { Toast } from '@/utils/helpers'
 
 export default {
-  name: 'SignIn',
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      isProcessing: false
     }
   },
   methods: {
@@ -50,6 +50,8 @@ export default {
           })
           return
         }
+        this.isProcessing = true
+
         // 使用 authorizationAPI 的 signIn 方法
         // 並且帶入使用者填寫的 email 和 password
         const response = await authorizationAPI.signIn({
@@ -66,6 +68,8 @@ export default {
         this.$router.push('/restaurants')
       } catch (error) {
         this.password = ''
+        this.isProcessing = false
+
         Toast.fire({
           type: 'warning',
           title: '請確認您輸入的帳號密碼是否錯誤'
