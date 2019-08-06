@@ -29,9 +29,19 @@
       <p>{{ restaurant.description }}</p>
       <router-link class="btn btn-primary btn-border mr-2" :to="{name: 'restaurant-dashboard', params: {id: restaurant.id }}">Dashboard</router-link>
 
-      <button v-if="restaurant.isFavorited" type="button" class="btn btn-danger btn-border mr-2" @click.stop.prevent="removeFavorite(restaurant.id)">移除最愛</button>
+      <button
+        v-if="restaurant.isFavorited"
+        type="button"
+        class="btn btn-danger btn-border mr-2"
+        @click.stop.prevent="removeFavorite(restaurant.id)"
+      >移除最愛</button>
       <button v-else type="button" class="btn btn-primary btn-border mr-2" @click.stop.prevent="addFavorite(restaurant.id)">加到最愛</button>
-      <button v-if="restaurant.isLiked" type="button" class="btn btn-danger like mr-2" @click.stop.prevent="removeLike(restaurant.id)">Unlike</button>
+      <button
+        v-if="restaurant.isLiked"
+        type="button"
+        class="btn btn-danger like mr-2"
+        @click.stop.prevent="removeLike(restaurant.id)"
+      >Unlike</button>
       <button v-else type="button" class="btn btn-primary like mr-2" @click.stop.prevent="addLike(restaurant.id)">Like</button>
     </div>
   </div>
