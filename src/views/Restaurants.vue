@@ -1,15 +1,12 @@
 <template>
   <div class="container py-5">
     <NavTabs />
-    <!-- 餐廳類別標籤 RestaurantsNavPills -->
     <RestaurantsNavPills :categories="categories" />
 
     <div class="row">
-      <!-- 餐廳卡片 RestaurantCard-->
       <RestaurantCard v-for="restaurant in restaurants" :key="restaurant.id" :initial-restaurant="restaurant" />
     </div>
 
-    <!-- 分頁標籤 RestaurantPagination -->
     <RestaurantsPagination v-if="totalPage > 1" :category-id="categoryId" :current-page="currentPage" :total-page="totalPage" />
   </div>
 </template>
@@ -36,6 +33,11 @@ export default {
   created() {
     const { page, categoryId } = this.$route.query
     this.fetchRestaurants({ page, categoryId })
+  },
+  beforeRouteUpdate(to, from, next) {
+    const { page, categoryId } = to.query
+    this.fetchRestaurants({ page, categoryId })
+    next()
   },
   methods: {
     async fetchRestaurants({ page = 1, categoryId = '' }) {
