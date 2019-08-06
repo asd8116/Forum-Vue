@@ -9,7 +9,7 @@
         </h4>
 
         <p>{{ comment.text }}</p>by
-        <router-link :to="{ name: 'user', params: {id: comment.User.id}}">{{ comment.User.name || '使用者' }}</router-link>
+        <router-link :to="{ name: 'user', params: {id: comment.User.id}}">{{ comment.User.name }}</router-link>
         at {{ comment.createdAt | fromNow }}
         <hr />
       </div>
