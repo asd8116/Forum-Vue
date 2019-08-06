@@ -53,6 +53,7 @@ export default {
     initialRestaurant: {
       type: Object,
       default: () => ({
+        id: -1,
         name: '',
         categoryId: '',
         tel: '',
@@ -71,6 +72,7 @@ export default {
   data() {
     return {
       restaurant: {
+        id: -1,
         name: '',
         categoryId: '',
         tel: '',
@@ -81,6 +83,14 @@ export default {
       },
       categories: [],
       isLoading: true
+    }
+  },
+  watch: {
+    initialRestaurant(restaurants) {
+      this.restaurant = {
+        ...this.restaurant,
+        ...this.initialRestaurant
+      }
     }
   },
   created() {
