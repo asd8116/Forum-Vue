@@ -15,7 +15,7 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ restaurant.name }}</h5>
-            <span class="badge badge-secondary">收藏數：{{ restaurant.FavoritedUsers.length }}</span>
+            <span class="badge badge-secondary">收藏數：{{ restaurant.FavoriteCount }}</span>
             <p class="card-text">{{ restaurant.description }}</p>
             <router-link class="btn btn-primary mr-2" :to="{name: 'restaurant', params: {id: restaurant.id }}">Show</router-link>
 
@@ -85,15 +85,19 @@ export default {
           throw new Error(statusText)
         }
 
-        this.restaurants = this.restaurants.map(restaurant => {
-          if (restaurant.id !== restaurantId) {
-            return restaurant
-          }
-          return {
-            ...restaurant,
-            isFavorited: true
-          }
-        })
+        this.restaurants = this.restaurants
+          .map(restaurant => {
+            if (restaurant.id !== restaurantId) {
+              return restaurant
+            }
+            return {
+              ...restaurant,
+              FavoriteCount: restaurant.FavoriteCount + 1,
+              isFavorited: true
+            }
+          })
+          .sort((a, b) => b.FavoriteCount - a.FavoriteCount)
+
         this.isProcessing = false
       } catch (error) {
         this.isProcessing = false
@@ -114,15 +118,19 @@ export default {
           throw new Error(statusText)
         }
 
-        this.restaurants = this.restaurants.map(restaurant => {
-          if (restaurant.id !== restaurantId) {
-            return restaurant
-          }
-          return {
-            ...restaurant,
-            isFavorited: false
-          }
-        })
+        this.restaurants = this.restaurants
+          .map(restaurant => {
+            if (restaurant.id !== restaurantId) {
+              return restaurant
+            }
+            return {
+              ...restaurant,
+              FavoriteCount: restaurant.FavoriteCount - 1,
+              isFavorited: false
+            }
+          })
+          .sort((a, b) => b.FavoriteCount - a.FavoriteCount)
+
         this.isProcessing = false
       } catch (error) {
         this.isProcessing = false

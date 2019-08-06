@@ -74,16 +74,20 @@ export default {
           throw new Error(statusText)
         }
 
-        this.users = this.users.map(user => {
-          if (user.id !== userId) {
-            return user
-          }
+        this.users = this.users
+          .map(user => {
+            if (user.id !== userId) {
+              return user
+            }
 
-          return {
-            ...user,
-            isFollowed: true
-          }
-        })
+            return {
+              ...user,
+              FollowerCount: user.FollowerCount + 1,
+              isFollowed: true
+            }
+          })
+          .sort((a, b) => b.FollowerCount - a.FollowerCount)
+
         this.isProcessing = false
       } catch (error) {
         this.isProcessing = false
@@ -104,16 +108,20 @@ export default {
           throw new Error(statusText)
         }
 
-        this.users = this.users.map(user => {
-          if (user.id !== userId) {
-            return user
-          }
+        this.users = this.users
+          .map(user => {
+            if (user.id !== userId) {
+              return user
+            }
 
-          return {
-            ...user,
-            isFollowed: false
-          }
-        })
+            return {
+              ...user,
+              FollowerCount: user.FollowerCount - 1,
+              isFollowed: false
+            }
+          })
+          .sort((a, b) => b.FollowerCount - a.FollowerCount)
+
         this.isProcessing = false
       } catch (error) {
         this.isProcessing = false
