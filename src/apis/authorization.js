@@ -8,5 +8,10 @@ export default {
       email,
       password
     })
+  },
+  signUp(data) {
+    return apiHelper.post('/signup', {
+      ...data
+    })
   }
 }
