@@ -24,7 +24,7 @@
               type="button"
               class="btn btn-danger mr-2"
               :disabled="isProcessing"
-              @click.stop.prevent="removeFavorite(restaurant.id)"
+              @click.stop.prevent="deleteFavorite(restaurant.id)"
             >移除最愛</button>
             <button
               v-else
@@ -107,7 +107,7 @@ export default {
         })
       }
     },
-    async removeFavorite(restaurantId) {
+    async deleteFavorite(restaurantId) {
       try {
         this.isProcessing = true
         const { data, statusText } = await usersAPI.deleteFavorite({

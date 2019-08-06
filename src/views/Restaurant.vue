@@ -22,7 +22,6 @@ import restaurantsAPI from '@/apis/restaurants'
 import { Toast } from '@/utils/helpers'
 
 export default {
-  name: 'Restaurant',
   data() {
     return {
       restaurant: {

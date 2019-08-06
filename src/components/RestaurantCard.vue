@@ -17,7 +17,7 @@
           type="button"
           class="btn btn-danger btn-border favorite mr-2"
           :disabled="isProcessing"
-          @click.stop.prevent="removeFavorite(restaurant.id)"
+          @click.stop.prevent="deleteFavorite(restaurant.id)"
         >移除最愛</button>
         <button
           v-else
@@ -32,7 +32,7 @@
           type="button"
           class="btn btn-danger like mr-2"
           :disabled="isProcessing"
-          @click.stop.prevent="removeLike(restaurant.id)"
+          @click.stop.prevent="deleteLike(restaurant.id)"
         >Unlike</button>
         <button
           v-else
@@ -90,7 +90,7 @@ export default {
         })
       }
     },
-    async removeFavorite(restaurantId) {
+    async deleteFavorite(restaurantId) {
       try {
         this.isProcessing = true
         const { data, statusText } = await usersAPI.deleteFavorite({
@@ -138,7 +138,7 @@ export default {
         })
       }
     },
-    async removeLike(restaurantId) {
+    async deleteLike(restaurantId) {
       try {
         this.isProcessing = true
         const { data, statusText } = await usersAPI.deleteLike({
