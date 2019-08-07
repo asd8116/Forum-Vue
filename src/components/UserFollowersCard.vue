@@ -6,7 +6,7 @@
 
     <div class="card-body">
       <router-link v-for="follower in followers" :key="follower.id" :to="{name: 'user', params: { id: follower.id }}">
-        <img :src="follower.image | emptyImage" width="60" height="60" class="mr-1" />
+        <img :src="follower.image | emptyImage" width="60" height="60" class="mr-1 mb-1" />
       </router-link>
     </div>
   </div>

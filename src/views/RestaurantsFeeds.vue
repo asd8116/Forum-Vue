@@ -45,7 +45,6 @@ export default {
           throw new Error(statusText)
         }
 
-        console.log('data.comments', data.comments)
         this.restaurants = data.restaurants
         this.comments = data.comments.filter(comment => comment.Restaurant)
       } catch (error) {

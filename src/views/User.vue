@@ -22,198 +22,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import UserProfileCard from '@/components/UserProfileCard'
 import UserFollowingsCard from '@/components/UserFollowingsCard'
 import UserFollowersCard from '@/components/UserFollowersCard'
 import UserCommentsCard from '@/components/UserCommentsCard'
 import UserFavoritedRestaurantsCard from '@/components/UserFavoritedRestaurantsCard'
 
-const dummyData = {
-  profile: {
-    id: 1,
-    name: 'root',
-    email: 'root@example.com',
-    password: '$2a$10$3.cGoUF1lkEfQ2Oi57VpC.xVU3/8NS6yJzBQ0VJKV9AeW0e1trmmS',
-    image: 'https://i.imgur.com/JtQJRMZ.png',
-    isAdmin: true,
-    createdAt: '2019-06-22T09:00:43.000Z',
-    updatedAt: '2019-06-23T01:15:48.000Z',
-    FavoritedRestaurants: [
-      {
-        id: 2,
-        name: 'Mrs. Mckenzie Johnston',
-        tel: '567-714-6131 x621',
-        address: '61371 Rosalinda Knoll',
-        opening_hours: '08:00',
-        description: 'Quia pariatur perferendis architecto tenetur omnis pariatur tempore.',
-        image: 'https://loremflickr.com/320/240/food,dessert,restaurant/?random=2',
-        createdAt: '2019-06-22T09:00:43.000Z',
-        updatedAt: '2019-06-22T09:00:43.000Z',
-        CategoryId: 3,
-        Favorite: {
-          UserId: 1,
-          RestaurantId: 2,
-          createdAt: '2019-06-24T15:03:34.000Z',
-          updatedAt: '2019-06-24T15:03:34.000Z'
-        }
-      },
-      {
-        id: 3,
-        name: 'Abel Blanda',
-        tel: '1-554-475-7456 x210',
-        address: '4510 Guiseppe Lights',
-        opening_hours: '08:00',
-        description:
-          'Quibusdam aliquid perferendis quam. Aspernatur sit dolor aliquid unde iure. Qui voluptatibus aperiam autem fugit corrupti dolore. Nostrum ipsa est quas voluptatibus quia debitis veniam. Libero harum assumenda in impedit. Aliquid consequatur voluptatibus quo tenetur nesciunt enim suscipit voluptatibus.\n \rVitae eos magni nihil. Facilis laborum et labore consequuntur dolores quis aut rem porro. Enim suscipit cumque dolorem odio sint alias. Molestias excepturi esse maxime magnam eius aut non soluta.\n \rEum commodi ea itaque aut quam. Nemo nobis aliquid quis dolorem. Aspernatur aut non consequatur ad perferendis maiores sunt eveniet.',
-        image: 'https://loremflickr.com/320/240/food,dessert,restaurant/?random=3',
-        createdAt: '2019-06-22T09:00:43.000Z',
-        updatedAt: '2019-06-22T09:00:43.000Z',
-        CategoryId: 4,
-        Favorite: {
-          UserId: 1,
-          RestaurantId: 3,
-          createdAt: '2019-06-24T15:03:35.000Z',
-          updatedAt: '2019-06-24T15:03:35.000Z'
-        }
-      }
-    ],
-    Followers: [
-      {
-        id: 1,
-        name: 'root',
-        email: 'root@example.com',
-        password: '$2a$10$3.cGoUF1lkEfQ2Oi57VpC.xVU3/8NS6yJzBQ0VJKV9AeW0e1trmmS',
-        image: 'https://i.imgur.com/JtQJRMZ.png',
-        isAdmin: true,
-        createdAt: '2019-06-22T09:00:43.000Z',
-        updatedAt: '2019-06-23T01:15:48.000Z',
-        Followship: {
-          followerId: 1,
-          followingId: 3,
-          createdAt: '2019-06-24T14:21:23.000Z',
-          updatedAt: '2019-06-24T14:21:23.000Z'
-        }
-      }
-    ],
-    Followings: [
-      {
-        id: 3,
-        name: 'user2',
-        email: 'user2@example.com',
-        password: '$2a$10$0Izt5W6Q4iphLq1ORgsKQu9jbEFdRD3.UaX/HQQg0M4Hp8yWV.XuS',
-        image: 'https://i.imgur.com/1T9ddHb.png',
-        isAdmin: false,
-        createdAt: '2019-06-22T09:00:43.000Z',
-        updatedAt: '2019-06-23T01:16:52.000Z',
-        Followship: {
-          followerId: 1,
-          followingId: 3,
-          createdAt: '2019-06-24T14:21:23.000Z',
-          updatedAt: '2019-06-24T14:21:23.000Z'
-        }
-      },
-      {
-        id: 2,
-        name: 'user1',
-        email: 'user1@example.com',
-        password: '$2a$10$0ISHJI48xu/VRNVmEeycFe8v5ChyT305f8KaJVIhumu7M/eKAikkm',
-        image: 'https://i.imgur.com/XooCt5K.png',
-        isAdmin: false,
-        createdAt: '2019-06-22T09:00:43.000Z',
-        updatedAt: '2019-06-23T01:16:31.000Z',
-        Followship: {
-          followerId: 1,
-          followingId: 2,
-          createdAt: '2019-06-24T14:21:33.000Z',
-          updatedAt: '2019-06-24T14:21:33.000Z'
-        }
-      }
-    ],
-    Comments: [
-      {
-        id: 5,
-        text: 'Aspernatur eligendi tempora perferendis nobis ratione occaecati fuga.',
-        UserId: 1,
-        RestaurantId: 7,
-        createdAt: '2019-06-22T09:00:43.000Z',
-        updatedAt: '2019-06-22T09:00:43.000Z',
-        Restaurant: {
-          id: 7,
-          name: 'Jasen Ward',
-          tel: '909-961-8157 x325',
-          address: "9825 O'Reilly Lodge",
-          opening_hours: '08:00',
-          description: 'Cum eum dolor odio. Placeat veniam corrupti assumenda. Ea debitis beatae.',
-          image: 'https://loremflickr.com/320/240/food,dessert,restaurant/?random=7',
-          createdAt: '2019-06-22T09:00:43.000Z',
-          updatedAt: '2019-06-22T09:00:43.000Z',
-          CategoryId: 1
-        }
-      },
-      {
-        id: 10,
-        text: 'Nisi quam dolorem debitis deserunt esse praesentium et.',
-        UserId: 1,
-        RestaurantId: 3,
-        createdAt: '2019-06-22T09:00:43.000Z',
-        updatedAt: '2019-06-22T09:00:43.000Z',
-        Restaurant: {
-          id: 3,
-          name: 'Abel Blanda',
-          tel: '1-554-475-7456 x210',
-          address: '4510 Guiseppe Lights',
-          opening_hours: '08:00',
-          description:
-            'Quibusdam aliquid perferendis quam. Aspernatur sit dolor aliquid unde iure. Qui voluptatibus aperiam autem fugit corrupti dolore. Nostrum ipsa est quas voluptatibus quia debitis veniam. Libero harum assumenda in impedit. Aliquid consequatur voluptatibus quo tenetur nesciunt enim suscipit voluptatibus.\n \rVitae eos magni nihil. Facilis laborum et labore consequuntur dolores quis aut rem porro. Enim suscipit cumque dolorem odio sint alias. Molestias excepturi esse maxime magnam eius aut non soluta.\n \rEum commodi ea itaque aut quam. Nemo nobis aliquid quis dolorem. Aspernatur aut non consequatur ad perferendis maiores sunt eveniet.',
-          image: 'https://loremflickr.com/320/240/food,dessert,restaurant/?random=3',
-          createdAt: '2019-06-22T09:00:43.000Z',
-          updatedAt: '2019-06-22T09:00:43.000Z',
-          CategoryId: 4
-        }
-      },
-      {
-        id: 11,
-        text: 'Quos asperiores in nostrum cupiditate excepturi aspernatur.',
-        UserId: 1,
-        RestaurantId: 1,
-        createdAt: '2019-06-23T12:42:45.000Z',
-        updatedAt: '2019-06-23T12:42:45.000Z',
-        Restaurant: {
-          id: 10,
-          name: 'Landen Schmeler MD',
-          tel: '764-310-0872',
-          address: '86710 Oberbrunner Meadow',
-          opening_hours: '08:00',
-          description:
-            'Sunt magni repudiandae cum. Qui quae excepturi veritatis porro deleniti atque vel adipisci quod. Praesentium laudantium iure. Consequatur quis et porro ab ipsa repudiandae in. Itaque molestiae veniam voluptatum quia. Voluptatibus doloremque quia consequatur sed.',
-          image: 'https://loremflickr.com/320/240/food,dessert,restaurant/?random=10',
-          createdAt: '2019-06-22T09:00:43.000Z',
-          updatedAt: '2019-06-22T09:00:43.000Z',
-          CategoryId: 3
-        }
-      }
-    ]
-  },
-  isFollowed: false,
-  followings: [],
-  followers: [],
-  comments: [],
-  favoritedRestaurants: []
-}
-
-const dummyUser = {
-  currentUser: {
-    id: 1,
-    name: '管理者',
-    email: 'root@example.com',
-    image: 'https://i.pravatar.cc/300',
-    isAdmin: true
-  },
-  isAuthenticated: true
-}
+import usersAPI from '@/apis/users'
+import { Toast } from '@/utils/helpers'
 
 export default {
-  name: 'User',
   data() {
     return {
       user: {
@@ -230,33 +49,57 @@ export default {
       followings: [],
       followers: [],
       comments: [],
-      favoritedRestaurants: [],
-      currentUser: dummyUser.currentUser
+      favoritedRestaurants: []
     }
   },
+  computed: {
+    ...mapState(['currentUser'])
+  },
   created() {
-    this.fetchUser()
-    console.log('this.currentUser.id', this.currentUser.id, this.user.id)
+    const { id } = this.$route.params
+    this.fetchUser(id)
+  },
+  beforeRouteUpdate(to, from, next) {
+    const { id } = to.params
+    this.fetchUser(id)
+    next()
   },
   methods: {
-    fetchUser() {
-      const { profile, isFollowed } = dummyData
-      this.user = {
-        ...this.user,
-        id: profile.id,
-        image: profile.image,
-        name: profile.name,
-        email: profile.email,
-        followingsLength: profile.Followings.length,
-        followersLength: profile.Followers.length,
-        commentsLength: profile.Comments.length,
-        favoritedRestaurantsLength: profile.FavoritedRestaurants.length
+    async fetchUser(userId) {
+      try {
+        const { data, statusText } = await usersAPI.get({
+          userId
+        })
+
+        const { profile, isFollowed } = data
+        if (statusText !== 'OK') {
+          throw new Error(statusText)
+        }
+
+        this.user = {
+          ...this.user,
+          id: profile.id,
+          image: profile.image,
+          name: profile.name,
+          email: profile.email,
+          followingsLength: profile.Followings.length,
+          followersLength: profile.Followers.length,
+          commentsLength: profile.Comments.length,
+          favoritedRestaurantsLength: profile.FavoritedRestaurants.length
+        }
+        this.isFollowed = isFollowed
+        this.followings = profile.Followings
+        this.followers = profile.Followers
+        this.favoritedRestaurants = profile.FavoritedRestaurants
+        // 處理 comment.Restaurant 可能有空值的情況
+        this.comments = profile.Comments.filter(comment => comment.Restaurant)
+      } catch (error) {
+        // STEP 6: 錯誤處理
+        Toast.fire({
+          type: 'error',
+          title: '無法取得使用者資料，請稍後再試'
+        })
       }
-      this.isFollowed = isFollowed
-      this.followings = profile.Followings
-      this.followers = profile.Followers
-      this.favoritedRestaurants = profile.FavoritedRestaurants
-      this.comments = profile.Comments
     }
   },
   components: {
