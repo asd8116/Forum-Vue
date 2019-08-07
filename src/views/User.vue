@@ -1,20 +1,17 @@
 <template>
   <div class="container py-5">
-    <!-- UserProfileCard -->
     <UserProfileCard :user="user" :is-current-user="currentUser.id === user.id" :initial-is-followed="isFollowed" />
 
     <div class="row">
       <div class="col-md-4">
-        <!-- UserFollowingsCard -->
         <UserFollowingsCard :followings="followings" />
-        <!-- UserFollowersCard -->
+
         <UserFollowersCard :followers="followers" />
       </div>
 
       <div class="col-md-8">
-        <!-- UserCommentsCard -->
         <UserCommentsCard :comments="comments" />
-        <!-- UserFavoritedRestaurantsCard -->
+
         <UserFavoritedRestaurantsCard :favorited-restaurants="favoritedRestaurants" />
       </div>
     </div>
@@ -76,6 +73,14 @@ export default {
           throw new Error(statusText)
         }
 
+        // 處理多筆評論中重複的餐廳 id
+        let commentsMap = profile.Comments.reduce((map, { Restaurant }) => {
+          if (Restaurant && !map.has(Restaurant.id)) {
+            map.set(Restaurant.id, Restaurant)
+          }
+          return map
+        }, new Map())
+
         this.user = {
           ...this.user,
           id: profile.id,
@@ -84,7 +89,7 @@ export default {
           email: profile.email,
           followingsLength: profile.Followings.length,
           followersLength: profile.Followers.length,
-          commentsLength: profile.Comments.length,
+          commentsLength: [...commentsMap.values()].length,
           favoritedRestaurantsLength: profile.FavoritedRestaurants.length
         }
         this.isFollowed = isFollowed
@@ -92,9 +97,9 @@ export default {
         this.followers = profile.Followers
         this.favoritedRestaurants = profile.FavoritedRestaurants
         // 處理 comment.Restaurant 可能有空值的情況
-        this.comments = profile.Comments.filter(comment => comment.Restaurant)
+        // this.comments = profile.Comments.filter(comment => comment.Restaurant)
+        this.comments = [...commentsMap.values()]
       } catch (error) {
-        // STEP 6: 錯誤處理
         Toast.fire({
           type: 'error',
           title: '無法取得使用者資料，請稍後再試'
