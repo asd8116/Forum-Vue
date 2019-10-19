@@ -3,17 +3,36 @@
     <form @submit.stop.prevent="handleSubmit">
       <div class="form-group">
         <label for="name">Name</label>
-        <input id="name" v-model="name" type="text" name="name" class="form-control" placeholder="Enter Name" required />
+        <input
+          id="name"
+          v-model="name"
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Enter Name"
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="image">Image</label>
         <img v-if="image" :src="image" class="d-block img-thumbnail mb-3" width="200" height="200" />
 
-        <input id="image" type="file" name="image" accept="image/*" class="form-control-file" @change="handleFileChange" />
+        <input
+          id="image"
+          type="file"
+          name="image"
+          accept="image/*"
+          class="form-control-file"
+          @change="handleFileChange"
+        />
       </div>
 
-      <button type="submit" class="btn btn-primary" :disabled="isProcessing">{{ isProcessing ? "資料更新中..." : "Submit" }}</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        :disabled="isProcessing"
+      >{{ isProcessing ? "資料更新中..." : "Submit" }}</button>
     </form>
   </div>
 </template>

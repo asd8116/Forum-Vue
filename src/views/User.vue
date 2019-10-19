@@ -1,6 +1,10 @@
 <template>
   <div class="container py-5">
-    <UserProfileCard :user="user" :is-current-user="currentUser.id === user.id" :initial-is-followed="isFollowed" />
+    <UserProfileCard
+      :user="user"
+      :is-current-user="currentUser.id === user.id"
+      :initial-is-followed="isFollowed"
+    />
 
     <div class="row">
       <div class="col-md-4">
@@ -30,6 +34,13 @@ import usersAPI from '@/apis/users'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    UserProfileCard,
+    UserFollowingsCard,
+    UserFollowersCard,
+    UserCommentsCard,
+    UserFavoritedRestaurantsCard
+  },
   data() {
     return {
       user: {
@@ -106,13 +117,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    UserProfileCard,
-    UserFollowingsCard,
-    UserFollowersCard,
-    UserCommentsCard,
-    UserFavoritedRestaurantsCard
   }
 }
 </script>

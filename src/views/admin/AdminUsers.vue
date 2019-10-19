@@ -41,6 +41,10 @@ import adminAPI from '@/apis/admin'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    AdminNav,
+    Spinner
+  },
   data() {
     return {
       users: [],
@@ -101,10 +105,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    AdminNav,
-    Spinner
   }
 }
 </script>

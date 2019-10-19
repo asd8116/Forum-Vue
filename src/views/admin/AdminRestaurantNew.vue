@@ -6,10 +6,14 @@
 
 <script>
 import AdminRestaurantForm from '@/components/admin/AdminRestaurantForm.vue'
+
 import adminAPI from '@/apis/admin'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    AdminRestaurantForm
+  },
   data() {
     return {
       isProcessing: false
@@ -36,9 +40,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    AdminRestaurantForm
   }
 }
 </script>

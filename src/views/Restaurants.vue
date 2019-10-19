@@ -6,10 +6,19 @@
     <Spinner v-if="isLoading" />
     <template v-else>
       <div class="row">
-        <RestaurantCard v-for="restaurant in restaurants" :key="restaurant.id" :initial-restaurant="restaurant" />
+        <RestaurantCard
+          v-for="restaurant in restaurants"
+          :key="restaurant.id"
+          :initial-restaurant="restaurant"
+        />
       </div>
 
-      <RestaurantsPagination v-if="totalPage > 1" :category-id="categoryId" :current-page="currentPage" :total-page="totalPage" />
+      <RestaurantsPagination
+        v-if="totalPage > 1"
+        :category-id="categoryId"
+        :current-page="currentPage"
+        :total-page="totalPage"
+      />
     </template>
 
     <div v-if="restaurants.length < 1">此類別目前無餐廳資料</div>
@@ -27,6 +36,13 @@ import restaurantsAPI from '@/apis/restaurants'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    NavTabs,
+    RestaurantCard,
+    RestaurantsNavPills,
+    RestaurantsPagination,
+    Spinner
+  },
   data() {
     return {
       categories: [],
@@ -72,13 +88,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    NavTabs,
-    RestaurantsNavPills,
-    RestaurantCard,
-    RestaurantsPagination,
-    Spinner
   }
 }
 </script>

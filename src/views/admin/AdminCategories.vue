@@ -9,7 +9,12 @@
         </div>
 
         <div class="col-auto">
-          <button type="button" class="btn btn-primary" :disabled="isProcessing" @click.stop.prevent="createCategory">新增</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            :disabled="isProcessing"
+            @click.stop.prevent="createCategory"
+          >新增</button>
         </div>
       </div>
     </form>
@@ -31,7 +36,12 @@
           <td class="position-relative">
             <div v-show="!category.isEditing" class="category-name">{{ category.name }}</div>
 
-            <input v-show="category.isEditing" v-model="category.name" type="text" class="form-control" />
+            <input
+              v-show="category.isEditing"
+              v-model="category.name"
+              type="text"
+              class="form-control"
+            />
             <span v-show="category.isEditing" class="cancel" @click="handleCancel(category.id)">✕</span>
           </td>
 
@@ -50,7 +60,11 @@
               @click.stop.prevent="updateCategory({ categoryId: category.id, name: category.name })"
             >Save</button>
 
-            <button type="button" class="btn btn-link mr-2" @click.stop.prevent="deleteCategory(category.id)">Delete</button>
+            <button
+              type="button"
+              class="btn btn-link mr-2"
+              @click.stop.prevent="deleteCategory(category.id)"
+            >Delete</button>
           </td>
         </tr>
       </tbody>
@@ -66,6 +80,10 @@ import adminAPI from '@/apis/admin'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    AdminNav,
+    Spinner
+  },
   data() {
     return {
       newCategoryName: '',
@@ -186,10 +204,6 @@ export default {
       })
       this.toggleIsEditing(categoryId)
     }
-  },
-  components: {
-    AdminNav,
-    Spinner
   }
 }
 </script>

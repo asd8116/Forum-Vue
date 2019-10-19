@@ -32,6 +32,12 @@ import restaurantsAPI from '@/apis/restaurants'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    NavTabs,
+    NewestRestaurants,
+    NewestComments,
+    Spinner
+  },
   data() {
     return {
       restaurants: [],
@@ -62,12 +68,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    NavTabs,
-    NewestRestaurants,
-    NewestComments,
-    Spinner
   }
 }
 </script>

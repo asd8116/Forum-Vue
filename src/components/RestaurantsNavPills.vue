@@ -5,7 +5,10 @@
     </li>
 
     <li v-for="category in categories" :key="category.id" class="nav-item">
-      <router-link class="nav-link" :to="{ name: 'restaurants', query: { categoryId: category.id } }">{{ category.name }}</router-link>
+      <router-link
+        class="nav-link"
+        :to="{ name: 'restaurants', query: { categoryId: category.id } }"
+      >{{ category.name }}</router-link>
     </li>
   </ul>
 </template>

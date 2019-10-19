@@ -27,7 +27,9 @@ import restaurantsAPI from '@/apis/restaurants'
 import { Toast } from '@/utils/helpers'
 
 export default {
-  name: 'RestaurantDashboard',
+  components: {
+    Spinner
+  },
   data() {
     return {
       restaurant: {
@@ -82,9 +84,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    Spinner
   }
 }
 </script>

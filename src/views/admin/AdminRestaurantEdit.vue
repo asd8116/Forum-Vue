@@ -1,6 +1,10 @@
 <template>
   <div class="container py-5">
-    <AdminRestaurantForm :initial-restaurant="restaurant" :is-processing="isProcessing" @after-submit="handleAfterSubmit" />
+    <AdminRestaurantForm
+      :initial-restaurant="restaurant"
+      :is-processing="isProcessing"
+      @after-submit="handleAfterSubmit"
+    />
   </div>
 </template>
 
@@ -11,6 +15,9 @@ import adminAPI from '@/apis/admin'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    AdminRestaurantForm
+  },
   data() {
     return {
       restaurant: {
@@ -87,9 +94,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    AdminRestaurantForm
   }
 }
 </script>

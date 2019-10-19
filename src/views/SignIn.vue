@@ -7,15 +7,36 @@
 
       <div class="form-label-group mb-2">
         <label for="email">email</label>
-        <input id="email" v-model="email" name="email" type="email" class="form-control" placeholder="email" required autofocus />
+        <input
+          id="email"
+          v-model="email"
+          name="email"
+          type="email"
+          class="form-control"
+          placeholder="email"
+          required
+          autofocus
+        />
       </div>
 
       <div class="form-label-group mb-3">
         <label for="password">Password</label>
-        <input id="password" v-model="password" name="password" type="password" class="form-control" placeholder="Password" required />
+        <input
+          id="password"
+          v-model="password"
+          name="password"
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
       </div>
 
-      <button class="btn btn-lg btn-primary btn-block mb-3" type="submit" :disabled="isProcessing">Submit</button>
+      <button
+        class="btn btn-lg btn-primary btn-block mb-3"
+        type="submit"
+        :disabled="isProcessing"
+      >Submit</button>
 
       <div class="text-center mb-3">
         <p>

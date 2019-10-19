@@ -1,11 +1,19 @@
 <template>
   <div class="col-md-6 col-lg-4">
     <div class="card mb-4">
-      <img class="card-img-top" :src="restaurant.image | emptyImage" alt="Card image cap" width="286px" height="180px" />
+      <img
+        class="card-img-top"
+        :src="restaurant.image | emptyImage"
+        alt="Card image cap"
+        width="286px"
+        height="180px"
+      />
 
       <div class="card-body">
         <p class="card-text title-wrap">
-          <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}">{{ restaurant.name }}</router-link>
+          <router-link
+            :to="{ name: 'restaurant', params: { id: restaurant.id }}"
+          >{{ restaurant.name }}</router-link>
         </p>
         <span class="badge badge-secondary">{{ restaurant.Category.name }}</span>
         <p class="card-text text-truncate">{{ restaurant.description }}</p>
@@ -47,8 +55,8 @@
 </template>
 
 <script>
-import { emptyImageFilter } from '@/utils/mixins'
 import usersAPI from '@/apis/users'
+import { emptyImageFilter } from '@/utils/mixins'
 import { Toast } from '@/utils/helpers'
 
 export default {

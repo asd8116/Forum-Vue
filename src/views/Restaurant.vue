@@ -8,7 +8,10 @@
       <hr />
 
       <!-- 餐廳評論 RestaurantComments -->
-      <RestaurantComments :restaurant-comments="restaurantComments" @after-delete-comment="afterDeleteComment" />
+      <RestaurantComments
+        :restaurant-comments="restaurantComments"
+        @after-delete-comment="afterDeleteComment"
+      />
 
       <!-- 新增評論 CreateComment -->
       <CreateComment :restaurant-id="restaurant.id" @after-create-comment="afterCreateComment" />
@@ -27,6 +30,12 @@ import restaurantsAPI from '@/apis/restaurants'
 import { Toast } from '@/utils/helpers'
 
 export default {
+  components: {
+    RestaurantDetail,
+    RestaurantComments,
+    CreateComment,
+    Spinner
+  },
   data() {
     return {
       restaurant: {
@@ -106,12 +115,6 @@ export default {
         createdAt: new Date()
       })
     }
-  },
-  components: {
-    RestaurantDetail,
-    RestaurantComments,
-    CreateComment,
-    Spinner
   }
 }
 </script>

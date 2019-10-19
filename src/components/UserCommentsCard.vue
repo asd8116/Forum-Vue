@@ -5,7 +5,11 @@
     </div>
 
     <div class="card-body">
-      <router-link v-for="comment in comments" :key="comment.id" :to="{name: 'restaurant', params: { id: comment.id }}">
+      <router-link
+        v-for="comment in comments"
+        :key="comment.id"
+        :to="{name: 'restaurant', params: { id: comment.id }}"
+      >
         <img :src="comment.image | emptyImage" width="60" height="60" class="mr-1 mb-1" />
       </router-link>
     </div>

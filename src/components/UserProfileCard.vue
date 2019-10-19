@@ -25,12 +25,25 @@
           </ul>
 
           <template v-if="isCurrentUser">
-            <router-link :to="{name: 'user-edit', params: {id: user.id}}" class="btn btn-primary">Edit</router-link>
+            <router-link
+              :to="{name: 'user-edit', params: {id: user.id}}"
+              class="btn btn-primary"
+            >Edit</router-link>
           </template>
 
           <template v-else>
-            <button v-if="isFollowed" type="button" class="btn btn-danger" @click.stop.prevent="deleteFollowing(user.id)">取消追蹤</button>
-            <button v-else type="button" class="btn btn-primary" @click.stop.prevent="addFollowing(user.id)">追蹤</button>
+            <button
+              v-if="isFollowed"
+              type="button"
+              class="btn btn-danger"
+              @click.stop.prevent="deleteFollowing(user.id)"
+            >取消追蹤</button>
+            <button
+              v-else
+              type="button"
+              class="btn btn-primary"
+              @click.stop.prevent="addFollowing(user.id)"
+            >追蹤</button>
           </template>
         </div>
       </div>
@@ -39,9 +52,8 @@
 </template>
 
 <script>
-import { emptyImageFilter } from '@/utils/mixins'
-
 import usersAPI from '@/apis/users'
+import { emptyImageFilter } from '@/utils/mixins'
 import { Toast } from '@/utils/helpers'
 
 export default {

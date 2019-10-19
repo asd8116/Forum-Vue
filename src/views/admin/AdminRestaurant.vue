@@ -8,7 +8,11 @@
       </div>
 
       <div class="col-md-4">
-        <img class="img-responsive center-block" :src="restaurant.image | emptyImage" style="width: 250px;margin-bottom: 25px;" />
+        <img
+          class="img-responsive center-block"
+          :src="restaurant.image | emptyImage"
+          style="width: 250px;margin-bottom: 25px;"
+        />
         <div class="well">
           <ul class="list-unstyled">
             <li>
@@ -39,13 +43,16 @@
 
 <script>
 import Spinner from '@/components/Spinner'
-import { emptyImageFilter } from '@/utils/mixins'
 
 import adminAPI from '@/apis/admin'
+import { emptyImageFilter } from '@/utils/mixins'
 import { Toast } from '@/utils/helpers'
 
 export default {
   mixins: [emptyImageFilter],
+  components: {
+    Spinner
+  },
   data() {
     return {
       restaurant: {
@@ -105,9 +112,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    Spinner
   }
 }
 </script>

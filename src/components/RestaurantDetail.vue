@@ -6,7 +6,11 @@
     </div>
 
     <div class="col-lg-4">
-      <img class="img-responsive center-block" :src="restaurant.image | emptyImage" style="width: 250px;margin-bottom: 25px;" />
+      <img
+        class="img-responsive center-block"
+        :src="restaurant.image | emptyImage"
+        style="width: 250px;margin-bottom: 25px;"
+      />
       <div class="contact-info-wrap">
         <ul class="list-unstyled">
           <li>
@@ -27,7 +31,10 @@
 
     <div class="col-lg-8">
       <p>{{ restaurant.description }}</p>
-      <router-link class="btn btn-primary btn-border mr-2" :to="{name: 'restaurant-dashboard', params: {id: restaurant.id }}">Dashboard</router-link>
+      <router-link
+        class="btn btn-primary btn-border mr-2"
+        :to="{name: 'restaurant-dashboard', params: {id: restaurant.id }}"
+      >Dashboard</router-link>
 
       <button
         v-if="restaurant.isFavorited"
@@ -35,7 +42,12 @@
         class="btn btn-danger btn-border mr-2"
         @click.stop.prevent="deleteFavorite(restaurant.id)"
       >移除最愛</button>
-      <button v-else type="button" class="btn btn-primary btn-border mr-2" @click.stop.prevent="addFavorite(restaurant.id)">加到最愛</button>
+      <button
+        v-else
+        type="button"
+        class="btn btn-primary btn-border mr-2"
+        @click.stop.prevent="addFavorite(restaurant.id)"
+      >加到最愛</button>
 
       <button
         v-if="restaurant.isLiked"
@@ -43,15 +55,19 @@
         class="btn btn-danger like mr-2"
         @click.stop.prevent="deleteLike(restaurant.id)"
       >Unlike</button>
-      <button v-else type="button" class="btn btn-primary like mr-2" @click.stop.prevent="addLike(restaurant.id)">Like</button>
+      <button
+        v-else
+        type="button"
+        class="btn btn-primary like mr-2"
+        @click.stop.prevent="addLike(restaurant.id)"
+      >Like</button>
     </div>
   </div>
 </template>
 
 <script>
+import usersAPI from '@/apis/users'
 import { emptyImageFilter } from '@/utils/mixins'
-
-import commentsAPI from '@/apis/comments'
 import { Toast } from '@/utils/helpers'
 
 export default {

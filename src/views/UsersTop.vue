@@ -17,8 +17,18 @@
           <span class="badge badge-secondary">追蹤人數：{{ user.FollowerCount }}</span>
 
           <p class="mt-3">
-            <button v-if="user.isFollowed" type="button" class="btn btn-danger" @click.stop.prevent="deleteFollowing(user.id)">取消追蹤</button>
-            <button v-else type="button" class="btn btn-primary" @click.stop.prevent="addFollowing(user.id)">追蹤</button>
+            <button
+              v-if="user.isFollowed"
+              type="button"
+              class="btn btn-danger"
+              @click.stop.prevent="deleteFollowing(user.id)"
+            >取消追蹤</button>
+            <button
+              v-else
+              type="button"
+              class="btn btn-primary"
+              @click.stop.prevent="addFollowing(user.id)"
+            >追蹤</button>
           </p>
         </div>
       </div>
@@ -36,6 +46,10 @@ import { Toast } from '@/utils/helpers'
 
 export default {
   mixins: [emptyImageFilter],
+  components: {
+    NavTabs,
+    Spinner
+  },
   data() {
     return {
       users: [],
@@ -133,10 +147,6 @@ export default {
         })
       }
     }
-  },
-  components: {
-    NavTabs,
-    Spinner
   }
 }
 </script>

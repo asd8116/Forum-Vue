@@ -25,9 +25,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import { fromNowFilter } from '@/utils/mixins'
 
 import commentsAPI from '@/apis/comments'
+import { fromNowFilter } from '@/utils/mixins'
 import { Toast } from '@/utils/helpers'
 
 export default {
